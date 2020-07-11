@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const MONGOURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/bookmarks';
 const whitelist = [
     'http://localhost:1985',
+    'andysbookmarks.herokuapp.com'
 ];
 const corsOptions = {
     origin: function (origin, callback) {
