@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bcrypt = require('bcrypt')
+const methodOverride = require('method-override');
 
 //GLOBALS
 require('dotenv').config() 
@@ -33,7 +33,7 @@ mongoose.connection.once('open', () => console.log('connected to mongoose...'));
 // MIDDLEWARE
 app.use(cors(corsOptions));
 app.use(express.json());
-
+app.use(methodOverride('_method'))
 
 // CONTROLLERS/ROUTES
 const bookmarksController = require('./controllers/bookmarks.js');
