@@ -35,7 +35,8 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true,
 mongoose.connection.once('open', () => console.log('connected to mongoose...'));
 
 // MIDDLEWARE
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 app.use(express.json());
 // app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +46,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const bookmarksController = require('./controllers/bookmarks.js');
 app.use('/bookmarks', bookmarksController);
 
+////Reroute from root to /bookmarks
+app.get('/', (req, res) => {
+    res.redirect('/bookmarks')
+})
 
 app.listen(PORT, ()=>{
     console.log(`Shhhhh, trying to read on port: ${PORT}`)
